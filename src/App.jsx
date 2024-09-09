@@ -22,7 +22,7 @@ function TodoForm({ onTodoAdd }) {
                 onChange={ e => setTodoTitle(e.target.value) }
                 onKeyDown={
                     e => {
-                    if (e.key === 'Enter' && todoTitle.trim()) handleClick()
+                        if (e.key === 'Enter' && todoTitle.trim()) handleClick()
                     }
                 } />
             {

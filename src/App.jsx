@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import { useState } from 'react'
 
 function TodoForm({ onTodoAdd }) {
@@ -22,7 +23,7 @@ function TodoForm({ onTodoAdd }) {
                 onKeyDown={
                     e => {
                     if (e.key === 'Enter' && todoTitle.trim()) handleClick()
-                    } 
+                    }
                 } />
             {
                 todoTitle.trim() && 
@@ -125,7 +126,7 @@ function FilterableTodoList() {
     }
     
     return (
-        <div className="col-12 col-sm-10 col-md-6 card bg-body-tertiary shadow mx-auto" style={{ maxWidth: '482px' }}>
+        <div className="col-12 col-sm-10 col-md-6 card bg-body-tertiary shadow mx-auto" style={{ maxWidth: '482px', height: '597px' }}>
             <div className="card-header">
                 <h4 className="h4 fw-bold text-center">
                     <span className="text-info">React</span> <span className="text-secondary">Todo App</span>

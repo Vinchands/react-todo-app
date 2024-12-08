@@ -2,7 +2,7 @@
 
 @layer components {
     .title-container {
-        @apply flex justify-between;
+        @apply flex justify-between p-2;
     }
     
     .title-text {

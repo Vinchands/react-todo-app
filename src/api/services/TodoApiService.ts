@@ -20,9 +20,9 @@ export async function createTodo(todo: object) {
     }
 }
 
-export async function updateTodo(id: number, todo: object) {
+export async function updateTodo(id: number, newTodo: object) {
     try {
-        const response = await api.put(`/todos/${id}`, todo)
+        const response = await api.patch(`/todos/${id}`, newTodo)
         return response.data
     } catch (error) {
         console.error('Error updating todo: ', error)

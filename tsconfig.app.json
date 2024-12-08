@@ -27,6 +27,7 @@
       "@components/*": ["./components/*"],
       "@utils/*": ["./api/utils/*"],
       "@services/*": ["./api/services/*"],
+      "@assets/*": ["./assets/*"],
     }
   },
   "include": ["src"]

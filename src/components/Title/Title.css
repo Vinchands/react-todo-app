@@ -1,0 +1,17 @@
+@tailwind components;
+
+@layer components {
+    .title-container {
+        @apply flex justify-between;
+    }
+    
+    .title-text {
+        @apply text-2xl text-center text-slate-500;
+        @apply dark:group-hover:text-white dark:group-hover:[text-shadow:0_0_8px_white];
+    }
+    
+    .title-logo {
+        @apply max-w-12 brightness-75;
+        @apply group-hover:brightness-100 group-hover:animate-spin;
+    }
+}

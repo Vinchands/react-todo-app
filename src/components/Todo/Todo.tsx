@@ -47,11 +47,11 @@ export default function Todo({ todo }: TodoProps): JSX.Element {
                     ? <input type='checkbox' className='scale-125' checked={ todo.completed } onChange={ handleTodoCheck } />
                     : <span className='animate-spin'><i className='bi bi-arrow-repeat'></i></span>
                 }
-                <p className={ `${todo.completed? 'line-through italic' : 'font-semibold'} px-1` }>{ todo.title }</p>
+                <p className={ `${todo.completed? 'line-through italic' : 'font-semilight'} px-1` }>{ todo.title }</p>
             </div>
             {
                 !deleteLoading?
-                <button className='delete-btn text-red-500' onClick={() => handleDeleteTodo(todo.id)}>
+                <button className='text-red-500' onClick={() => handleDeleteTodo(todo.id)}>
                     <i className='bi bi-trash'></i>
                 </button>
                 : <span className='animate-spin'><i className='bi bi-arrow-repeat'></i></span>

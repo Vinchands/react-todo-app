@@ -2,6 +2,7 @@ import AppContainer from '@components/AppContainer/AppContainer'
 import ThemeButton from '@components/ThemeButton/ThemeButton'
 import Title from '@components/Title/Title'
 import CreateTodoForm from '@components/CreateTodoForm/CreateTodoForm'
+import SearchBar from '@components/SearchBar/SearchBar'
 import Todo from '@components/Todo/Todo'
 import TodoRow from '@components/TodoRow/TodoRow'
 import TodoListContext from '@contexts/TodoList/TodoListContext'
@@ -19,22 +20,23 @@ type TodoType = {
 export default function App() {
     
     const { todos, setTodos } = useContext(TodoListContext)
+    const [loading, setLoading] = useState(false)
+    const [error, setError] = useState({})
     
     async function getTodoList() {
+        setLoading(true)
+        
         try {
             const { data } = await getTodos()
+            setLoading(false)
             setTodos(data)
+            
         } catch (error: unknown) {
             console.error('Error fetching todo list: ', error)
+            setLoading(false)
+            setError(error)
         }
     }
-    
-    // async function handleCreateTodo(todo: object) {
-    //     try {
-    //         await createTodo(todo)
-    //         getTodoList()
-    //     } catch (error) { console.error('Error creating todo: ', error) }
-    // }
     
     useEffect(() => { getTodoList() }, [])
     
@@ -43,19 +45,20 @@ export default function App() {
             <AppContainer>
                 <Title />
                 <CreateTodoForm />
-                <div className='flex py-3'>
-                    <span className='shrink-0 bg-white rounded-l-full p-2 dark:bg-slate-700'>
-                        <i className='bi bi-search'></i>
-                    </span>
-                    <input type='text' className='grow rounded-r-full px-2 focus:outline-none dark:text-white dark:bg-slate-700' placeholder='Search...' />
-                </div>
-                <TodoRow>
-                    {
-                        todos?.length > 0
-                        ? todos.map(todo => <Todo key={ todo.id } todo={ todo } />)
-                        : <p className='text-center'>You have nothing todo yet.</p>
-                    }
-                </TodoRow>
+                <SearchBar />
+                {
+                    loading? <p className='text-center bg-slate-200 rounded p-3 dark:bg-slate-600'>Loading...</p> : (
+                        error.message? <p className='text-center text-red-500 bg-slate-200 rounded p-3 dark:bg-slate-600'>{ error.message }</p> : (
+                            todos?.length > 0
+                            ? (
+                                <TodoRow>
+                                    { todos.map(todo => <Todo key={ todo.id } todo={ todo } />) }
+                                </TodoRow>
+                            )
+                            : <p className='text-center bg-slate-200 rounded p-3 dark:bg-slate-600'>You have nothing todo yet.</p>
+                        )
+                    )
+                }
             </AppContainer>
             <ThemeButton />
         </div>

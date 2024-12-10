@@ -1,0 +1,17 @@
+@tailwind components;
+
+@layer components {
+    .searchbar {
+        @apply flex py-3;
+    }
+    
+    .search-icon {
+        @apply shrink-0 bg-white rounded-l-full p-2;
+        @apply dark:bg-slate-700;
+    }
+    
+    .search-input {
+        @apply grow rounded-r-full px-2 focus:outline-none;
+        @apply dark:text-white dark:bg-slate-700;
+    }
+}

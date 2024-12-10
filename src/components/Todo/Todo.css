@@ -2,7 +2,7 @@
 
 @layer components {
     .todo-container {
-        @apply flex justify-between items-center bg-slate-200 rounded-md shadow-md overflow-x-auto mb-2 p-2 gap-x-2;
+        @apply flex justify-between items-center bg-slate-200 rounded-md shadow-md overflow-x-auto mb-3 p-3 gap-x-2;
         @apply dark:bg-gray-600;
     }
 }

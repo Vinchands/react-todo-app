@@ -2,6 +2,20 @@
 
 @layer components {
     .todo-row {
-        @apply max-h-[330px] overflow-y-auto;
+        @apply max-h-[330px] overflow-y-auto px-1;
+    }
+    
+    .todo-row::-webkit-scrollbar {
+        @apply w-1;
+    }
+    
+    .todo-row::-webkit-scrollbar-track {
+        @apply bg-violet-300;
+        @apply dark:bg-sky-800;
+    }
+    
+    .todo-row::-webkit-scrollbar-thumb {
+        @apply bg-violet-500;
+        @apply dark:bg-sky-500 rounded-full;
     }
 }

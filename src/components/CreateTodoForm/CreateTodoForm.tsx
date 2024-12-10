@@ -37,7 +37,7 @@ export default function CreateTodoForm() {
                 onChange={ handleChange } 
                 onKeyDown={ 
                     (e: React.KeyboardEvent<HTMLInputElement>) => {
-                        if (e.key === 'Enter' && text) handleCreate()
+                        if (e.key === 'Enter' && text.trim()) handleCreate()
                     }
                 } 
                 placeholder='Add todo...'

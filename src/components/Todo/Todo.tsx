@@ -44,10 +44,10 @@ export default function Todo({ todo }: TodoProps): JSX.Element {
             <div className='flex items-center gap-x-1'>
                 {
                     !checkboxLoading
-                    ? <input type='checkbox' checked={ todo.completed } onChange={ handleTodoCheck } />
+                    ? <input type='checkbox' className='scale-125' checked={ todo.completed } onChange={ handleTodoCheck } />
                     : <span className='animate-spin'><i className='bi bi-arrow-repeat'></i></span>
                 }
-                <span className='truncate'>{ todo.title }</span>
+                <p className={ `${todo.completed? 'line-through italic' : 'font-semibold'} px-1` }>{ todo.title }</p>
             </div>
             {
                 !deleteLoading?

@@ -28,6 +28,7 @@
       "@utils/*": ["./api/utils/*"],
       "@services/*": ["./api/services/*"],
       "@assets/*": ["./assets/*"],
+      "@contexts/*": ["./contexts/*"],
     }
   },
   "include": ["src"]

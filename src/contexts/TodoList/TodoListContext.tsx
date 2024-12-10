@@ -11,7 +11,9 @@ type TodoListContextType = {
     setTodos: (todos: TodoType[]) => void
 }
 
-export const TodoListContext = createContext<TodoListContextType>({
+const TodoListContext = createContext<TodoListContextType>({
     todos: [],
     setTodos: () => {}
 })
+
+export default TodoListContext;

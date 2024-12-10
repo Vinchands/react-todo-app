@@ -18,7 +18,7 @@ export default function ThemeButton() {
     }, [isDarkMode])
     
     return (
-        <div className='fixed right-4 bottom-12'>
+        <div className='fixed right-2 bottom-8 sm:right-4 sm:bottom-12'>
             <div className='relative group'>
                 <button className='theme-button' onClick={ () => setIsDarkMode(!isDarkMode) }>
                     <i className={ `bi bi-${!isDarkMode? 'moon-stars-fill' : 'sun-fill'}` }></i>

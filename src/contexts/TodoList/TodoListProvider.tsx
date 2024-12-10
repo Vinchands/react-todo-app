@@ -1,4 +1,4 @@
-import { TodoListContext } from './TodoListContext'
+import TodoListContext from './TodoListContext'
 import { useState } from 'react'
 
 type TodoType = {
@@ -7,7 +7,7 @@ type TodoType = {
     completed: boolean;
 }
 
-export function TodoListProvider({ children }: { children: React.ReactNode }) {
+export default function TodoListProvider({ children }: { children: React.ReactNode }) {
     
     const [todos, setTodos] = useState<TodoType[]>([])
     

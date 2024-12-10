@@ -6,7 +6,7 @@ import TodoRow from '@components/TodoRow/TodoRow'
 import TodoListContext from '@contexts/TodoList/TodoListContext'
 import TodoListProvider from '@contexts/TodoList/TodoListProvider'
 import { getTodos, createTodo, updateTodo, deleteTodo } from '@services/TodoApiService'
-import { useState, useEffect, useContext } from 'react'
+import { useRef, useState, useEffect, useContext } from 'react'
 import './App.css'
 
 type TodoType = {
@@ -18,6 +18,7 @@ type TodoType = {
 export default function App() {
     
     const { todos, setTodos } = useContext(TodoListContext)
+    const todoList = useRef([])
     
     async function getTodoList() {
         try {
@@ -34,11 +35,11 @@ export default function App() {
     //         getTodoList()
     //     } catch (error) { console.error('Error creating todo: ', error) }
     // }
-            
+    
     useEffect(() => { getTodoList() }, [])
     
     return (
-        <div className='flex justify-center sm:items-center min-h-screen bg-gradient-to-bl from-white to-fuchsia-400 p-3 dark:from-slate-900 dark:to-sky-950'>
+        <div className='flex justify-center items-center min-h-screen bg-gradient-to-bl from-white to-fuchsia-400 p-3 dark:from-slate-900 dark:to-sky-950'>
             <AppContainer>
                 <Title />
                 <div className='flex gap-1 py-3'>

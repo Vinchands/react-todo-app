@@ -7,6 +7,6 @@
         @apply hover:border-violet-200 hover:shadow-xl hover:shadow-violet-300;
         @apply dark:text-slate-300 dark:bg-slate-800 dark:border-slate-600;
         @apply dark:hover:border-sky-300 dark:hover:shadow-sky-500;
-        @apply sm:min-w-[420px] sm:max-h-[580px];
+        @apply sm:min-w-[300px] sm:max-h-[580px];
     }
 }

@@ -10,9 +10,9 @@ export async function getTodos() {
     }
 }
 
-export async function createTodo(todo: object) {
+export async function createTodo(title: string) {
     try {
-        const response = await api.post('/todos', todo)
+        const response = await api.post('/todos', { title })
         return response.data
     } catch (error) {
         console.error('Error creating todo: ', error)

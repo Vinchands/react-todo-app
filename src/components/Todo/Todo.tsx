@@ -50,8 +50,8 @@ export default function Todo({ todo }: TodoProps): JSX.Element {
                 <span className='truncate'>{ todo.title }</span>
             </div>
             {
-                !deleteLoading
-                ? <button className='delete-btn text-red-500' onClick={() => handleDeleteTodo(todo.id)}>
+                !deleteLoading?
+                <button className='delete-btn text-red-500' onClick={() => handleDeleteTodo(todo.id)}>
                     <i className='bi bi-trash'></i>
                 </button>
                 : <span className='animate-spin'><i className='bi bi-arrow-repeat'></i></span>

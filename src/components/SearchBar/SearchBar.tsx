@@ -1,21 +1,12 @@
-import { useState, useMemo, useContext } from 'react'
+import { useState } from 'react'
 import TodoListContext from '@contexts/TodoList/TodoListContext'
 import './SearchBar.css'
 
-export default function SearchBar() {
-    
-    const { todos, setTodos } = useContext(TodoListContext)
-    const [text, setText] = useState('')
-    
-    function handleSearch(e: React.ChangeEvent<HTMLInputElement>) {
-        setText(e.target.value)
-        
-        const filteredTodos = todos.filter((todo) =>
-            todo.title.toLowerCase().includes(text.toLowerCase())
-        )
-        
-        setTodos(filteredTodos)
-    }
+interface SearchBarProps {
+    onSearch: (e: string) => void;
+}
+
+export default function SearchBar({ onSearch }: SearchBarProps) {
     
     return (
         <div className='searchbar'>
@@ -25,8 +16,7 @@ export default function SearchBar() {
             <input 
                 type='text' 
                 className='search-input' 
-                onChange={ handleSearch }
-                value={ text }
+                onChange={ (e: React.ChangeEvent<HTMLInputElement>) => onSearch(e.target.value) }
                 placeholder='Search...' />
         </div>
     )

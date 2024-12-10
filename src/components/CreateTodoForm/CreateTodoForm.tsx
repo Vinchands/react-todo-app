@@ -19,7 +19,7 @@ export default function CreateTodoForm() {
             setTodos(data)
         } catch (error: unknown) {
             setLoading(false)
-            alert(error.message)
+            alert('Failed creating todo: ' + error.message)
             console.error('Error creating todo: ', error)
         }
     }

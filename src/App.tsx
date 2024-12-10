@@ -3,25 +3,24 @@ import ThemeButton from '@components/ThemeButton/ThemeButton'
 import Title from '@components/Title/Title'
 import CreateTodoForm from '@components/CreateTodoForm/CreateTodoForm'
 import SearchBar from '@components/SearchBar/SearchBar'
-import Todo from '@components/Todo/Todo'
-import TodoRow from '@components/TodoRow/TodoRow'
 import TodoListContext from '@contexts/TodoList/TodoListContext'
-import TodoListProvider from '@contexts/TodoList/TodoListProvider'
-import { getTodos, createTodo, updateTodo, deleteTodo } from '@services/TodoApiService'
+import { getTodos } from '@services/TodoApiService'
 import { useRef, useState, useEffect, useContext } from 'react'
 import './App.css'
+import FilterableTodoList from './components/FilterableTodoList/FilterableTodoList'
 
-type TodoType = {
-    id: number
-    title: string
-    completed: boolean
-}
+// type TodoType = {
+//     id: number
+//     title: string
+//     completed: boolean
+// }
 
 export default function App() {
     
     const { todos, setTodos } = useContext(TodoListContext)
     const [loading, setLoading] = useState(false)
     const [error, setError] = useState({})
+    const [searchQuery, setSearchQuery] = useState('')
     
     async function getTodoList() {
         setLoading(true)
@@ -33,6 +32,7 @@ export default function App() {
             
         } catch (error: unknown) {
             console.error('Error fetching todo list: ', error)
+            alert(error.message)
             setLoading(false)
             setError(error)
         }
@@ -45,15 +45,15 @@ export default function App() {
             <AppContainer>
                 <Title />
                 <CreateTodoForm />
-                <SearchBar />
                 {
                     loading? <p className='text-center bg-slate-200 rounded p-3 dark:bg-slate-600'>Loading...</p> : (
                         error.message? <p className='text-center text-red-500 bg-slate-200 rounded p-3 dark:bg-slate-600'>{ error.message }</p> : (
                             todos?.length > 0
                             ? (
-                                <TodoRow>
-                                    { todos.map(todo => <Todo key={ todo.id } todo={ todo } />) }
-                                </TodoRow>
+                                <>
+                                    <SearchBar onSearch={ setSearchQuery } />
+                                    <FilterableTodoList todoList={ todos } searchQuery={ searchQuery } />
+                                </>
                             )
                             : <p className='text-center bg-slate-200 rounded p-3 dark:bg-slate-600'>You have nothing todo yet.</p>
                         )

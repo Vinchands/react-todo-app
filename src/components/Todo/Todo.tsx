@@ -22,6 +22,7 @@ export default function Todo({ todo }: TodoProps): JSX.Element {
             setTodos(data)
         } catch (error) { 
             setCheckboxLoading(false)
+            alert('Failed updating todo: ' + error.message)
             console.error('Error updating todo: ', error)
         }
     }
@@ -35,6 +36,7 @@ export default function Todo({ todo }: TodoProps): JSX.Element {
             setTodos(data)
         } catch (error) {
             setDeleteLoading(false)
+            alert('Failed deleting todo: ' + error.message)
             console.error('Error deleting todo: ', error)
         }
     }

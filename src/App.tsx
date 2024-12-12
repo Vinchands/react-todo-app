@@ -5,7 +5,7 @@ import CreateTodoForm from '@components/CreateTodoForm/CreateTodoForm'
 import SearchBar from '@components/SearchBar/SearchBar'
 import TodoListContext from '@contexts/TodoList/TodoListContext'
 import { getTodos } from '@services/TodoApiService'
-import { useRef, useState, useEffect, useContext } from 'react'
+import { useState, useEffect, useContext } from 'react'
 import './App.css'
 import FilterableTodoList from './components/FilterableTodoList/FilterableTodoList'
 
@@ -13,7 +13,7 @@ export default function App() {
     
     const { todos, setTodos } = useContext(TodoListContext)
     const [loading, setLoading] = useState(false)
-    const [error, setError] = useState({})
+    const [error, setError] = useState<unknown | null>(null)
     const [searchQuery, setSearchQuery] = useState('')
     
     async function getTodoList() {
@@ -25,10 +25,10 @@ export default function App() {
             setTodos(data)
             
         } catch (error: unknown) {
+            setError(error)
+            setLoading(false)
             console.error('Error fetching todo list: ', error)
             alert(error.message)
-            setLoading(false)
-            setError(error)
         }
     }
     
@@ -42,13 +42,11 @@ export default function App() {
                 {
                     loading? <p className='text-center bg-slate-200 rounded p-3 dark:bg-slate-600'>Loading...</p> : (
                         error.message? <p className='text-center text-red-500 bg-slate-200 rounded p-3 dark:bg-slate-600'>{ error.message }</p> : (
-                            todos?.length > 0
-                            ? (
-                                <>
-                                    <SearchBar onSearch={ setSearchQuery } />
-                                    <FilterableTodoList todoList={ todos } searchQuery={ searchQuery } />
-                                </>
-                            )
+                            todos?.length > 0?
+                            <>
+                                <SearchBar onSearch={ setSearchQuery } />
+                                <FilterableTodoList todoList={ todos } searchQuery={ searchQuery } />
+                            </>
                             : <p className='text-center bg-slate-200 rounded p-3 dark:bg-slate-600'>You have nothing todo yet.</p>
                         )
                     )

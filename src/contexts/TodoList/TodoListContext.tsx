@@ -1,17 +1,17 @@
 import { createContext } from 'react'
 
 type TodoType = {
-    id: number;
-    title: string;
-    completed: boolean;
+    id: number
+    title: string
+    completed: boolean
 }
 
-type TodoListContextType = {
-    todos: TodoType[];
+interface TodoListContextProps {
+    todos: TodoType[]
     setTodos: (todos: TodoType[]) => void
 }
 
-const TodoListContext = createContext<TodoListContextType>({
+const TodoListContext = createContext<TodoListContextProps>({
     todos: [],
     setTodos: () => {}
 })

@@ -3,17 +3,22 @@ import ThemeButton from '@components/ThemeButton/ThemeButton'
 import Title from '@components/Title/Title'
 import CreateTodoForm from '@components/CreateTodoForm/CreateTodoForm'
 import SearchBar from '@components/SearchBar/SearchBar'
+import FilterableTodoList from '@components/FilterableTodoList/FilterableTodoList'
 import TodoListContext from '@contexts/TodoList/TodoListContext'
 import { getTodos } from '@services/TodoApiService'
 import { useState, useEffect, useContext } from 'react'
 import './App.css'
-import FilterableTodoList from './components/FilterableTodoList/FilterableTodoList'
+
+type NetworkErrorType = {
+    message: string;
+    [key: string]: unknown;
+}
 
 export default function App() {
     
     const { todos, setTodos } = useContext(TodoListContext)
+    const [error, setError] = useState<NetworkErrorType | null>(null)
     const [loading, setLoading] = useState(false)
-    const [error, setError] = useState<unknown | null>(null)
     const [searchQuery, setSearchQuery] = useState('')
     
     async function getTodoList() {
@@ -24,15 +29,20 @@ export default function App() {
             setLoading(false)
             setTodos(data)
             
-        } catch (error: unknown) {
+        } catch (error) {
             setError(error)
             setLoading(false)
             console.error('Error fetching todo list: ', error)
-            alert(error.message)
+            // alert('Error fetching todo list: ' + error.message)
         }
     }
     
-    useEffect(() => { getTodoList() }, [])
+    useEffect(() => {
+        setError(null)
+        getTodoList()
+        
+        return () => {}
+    }, [])
     
     return (
         <div className='flex justify-center items-center min-h-screen bg-gradient-to-bl from-white to-fuchsia-400 p-3 dark:from-slate-900 dark:to-sky-950'>
@@ -41,7 +51,7 @@ export default function App() {
                 <CreateTodoForm />
                 {
                     loading? <p className='text-center bg-slate-200 rounded p-3 dark:bg-slate-600'>Loading...</p> : (
-                        error.message? <p className='text-center text-red-500 bg-slate-200 rounded p-3 dark:bg-slate-600'>{ error.message }</p> : (
+                        error?.message? <p className='text-center text-red-500 bg-slate-200 rounded p-3 dark:bg-slate-600'>{ error.message }</p> : (
                             todos?.length > 0?
                             <>
                                 <SearchBar onSearch={ setSearchQuery } />

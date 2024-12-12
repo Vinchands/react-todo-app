@@ -30,7 +30,7 @@ export default function CreateTodoForm() {
     
     return (
         <>
-            <div className='flex gap-1 py-3'>
+            <div className='flex gap-1 py-2'>
                 <input 
                     type='text' 
                     className='grow rounded-md p-2 focus:outline-none dark:text-white dark:bg-slate-700' 
@@ -50,11 +50,11 @@ export default function CreateTodoForm() {
                         className='font-extrabold bg-fuchsia-300 rounded-md p-2 transition-colors ease-linear duration-100 hover:bg-fuchsia-500 dark:bg-sky-600 dark:hover:bg-sky-700'
                         onClick={ handleCreate }
                         disabled={ loading }>
-                        <i className='bi bi-plus-lg'></i>
+                        <i className={`bi bi-${!loading? 'plus-lg' : 'circle animate-ping'}`}></i>
                     </button>
                 }
             </div>
-            { text.length > 0 && <span className='block sm:inline text-xs px-2'>{text.length}/255</span> }
+            { text.length > 0 && <p className='text-xs px-2 pb-2'>{ text.length }/255</p> }
         </>
     )
 }

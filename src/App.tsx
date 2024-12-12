@@ -9,12 +9,6 @@ import { useRef, useState, useEffect, useContext } from 'react'
 import './App.css'
 import FilterableTodoList from './components/FilterableTodoList/FilterableTodoList'
 
-// type TodoType = {
-//     id: number
-//     title: string
-//     completed: boolean
-// }
-
 export default function App() {
     
     const { todos, setTodos } = useContext(TodoListContext)

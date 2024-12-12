@@ -1,5 +1,3 @@
-import { useState } from 'react'
-import TodoListContext from '@contexts/TodoList/TodoListContext'
 import './SearchBar.css'
 
 interface SearchBarProps {
@@ -17,6 +15,7 @@ export default function SearchBar({ onSearch }: SearchBarProps) {
                 type='text' 
                 className='search-input' 
                 onChange={ (e: React.ChangeEvent<HTMLInputElement>) => onSearch(e.target.value) }
+                maxLength={ 255 }
                 placeholder='Search...' />
         </div>
     )

@@ -25,7 +25,9 @@ export default function FilterableTodoList({ todoList, searchQuery }: Filterable
         <>
             {
                 searchQuery &&
-                <p className='text-center mb-2 py-1'>Found { filtered.length } for "{ searchQuery }"</p>
+                <p className='max-w-[200px] truncate text-xs text-center mx-auto mb-2 py-1'>
+                    Found { filtered.length } for <b>"{ searchQuery }"</b>
+                </p>
             }
             <TodoRow>
                 {

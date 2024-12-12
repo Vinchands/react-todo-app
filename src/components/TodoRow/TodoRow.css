@@ -2,7 +2,7 @@
 
 @layer components {
     .todo-row {
-        @apply max-h-[330px] overflow-y-auto px-1;
+        @apply max-h-[300px] overflow-y-auto px-1;
     }
     
     .todo-row::-webkit-scrollbar {
